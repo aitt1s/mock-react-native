@@ -17,6 +17,16 @@ export default class App extends React.Component {
     })
   }
 
+  placeDeletedHandler = index => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter((place, i) => {
+          return i !== index
+        })
+      }
+    })
+  }
+ 
   render() {
     return (
       <View style={styles.container}>
@@ -24,7 +34,10 @@ export default class App extends React.Component {
           onPlaceAdded={this.placeAddedHandler}
           placeName={this.state.placeName}
         />
-        <ListContainer places={this.state.places} />
+        <ListContainer 
+          places={this.state.places}
+          onItemDeleted={this.placeDeletedHandler}
+        />
       </View>
     );
   }

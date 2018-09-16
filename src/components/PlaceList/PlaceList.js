@@ -3,17 +3,17 @@ import { View, StyleSheet } from 'react-native'
 
 import ListItem from '../List/ListItem'
 
-const placesOutput = (places) => {
- return places.map((place, i) => (
-    <ListItem key={i} placeName={place} />
+const ListContainer = props => {
+  const placesOutput = props.places.map((place, i) => (
+    <ListItem 
+         key={i} 
+         placeName={place} 
+         onItemPressed={() => props.onItemDeleted(i)}
+    />
   ))
-}
 
-const ListContainer = (props) => (
-  <View style={styles.listContainer}>
-    {placesOutput(props.places)}
-  </View>
-)
+  return <View style={styles.listContainer}>{placesOutput}</View>
+}
 
 const styles = StyleSheet.create({
   listContainer: {
