@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import ListItem from './ListItem'
+import ListItem from '../List/ListItem'
 
 const placesOutput = (places) => {
  return places.map((place, i) => (
@@ -17,7 +17,7 @@ const ListContainer = (props) => (
 
 const styles = StyleSheet.create({
   listContainer: {
-    width: "100%"
+    width: '100%'
   }
 })
 

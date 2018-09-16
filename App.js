@@ -1,29 +1,18 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 
-import ListContainer from './src/components/List/ListContainer'
+import ListContainer from './src/components/PlaceList/PlaceList'
 import PlaceInput from './src/components/PlaceInput/PlaceInput'
 
 export default class App extends React.Component {
   state = {
-    placeName: '',
     places: []
   }
 
-  placeNameChangedHandler = (val) => {
-    this.setState({
-      placeName: val
-    })
-  }
-
-  placeSubmitHandler = () => {
-    if(this.state.placeName.trim() === "") {
-      return;
-    }
-
+  placeAddedHandler = placeName => {
     this.setState(prevState => {
       return {
-        places: prevState.places.concat(prevState.placeName)
+        places: prevState.places.concat(placeName)
       }
     })
   }
@@ -32,8 +21,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <PlaceInput 
-          placeNameChangedHandler={this.placeNameChangedHandler} 
-          placeSubmitHandler={this.placeSubmitHandler}
+          onPlaceAdded={this.placeAddedHandler}
           placeName={this.state.placeName}
         />
         <ListContainer places={this.state.places} />
